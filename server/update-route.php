@@ -1,22 +1,14 @@
 <?php 
-use Elasticsearch\ClientBuilder;
+require 'loader.php';
 
-require 'vendor/autoload.php';
-
-$hosts = [
-  [
-    'host' => 'elasticsearch'  
-  ]
-];
-
-$client = ClientBuilder::create()->setHosts($hosts)->build();
+$data = json_decode(file_get_contents("php://input"), true);
 
 $params['index'] = 'places';
 $params['type'] = 'location';
-$params['id'] = $_POST['id']; 
+$params['id'] = $data['id']; 
 
-$lat = $_POST['lat']; 
-$lon = $_POST['lon']; 
+$lat = $data['lat']; 
+$lon = $data['lon']; 
 
 $result = $client->get($params);
 $result['_source']['current_coords'] = [

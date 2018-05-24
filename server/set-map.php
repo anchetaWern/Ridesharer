@@ -1,16 +1,5 @@
 <?php 
-use Elasticsearch\ClientBuilder;
-
-require 'vendor/autoload.php';
-
-$hosts = [
-  [
-    'host' => 'elasticsearch'
-  ]
-];
-
-$client = ClientBuilder::create()->setHosts($hosts)->build();
-
+require 'loader.php';
 
 try {
   $indexParams['index']  = 'places';

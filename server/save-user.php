@@ -1,15 +1,5 @@
 <?php 
-use Elasticsearch\ClientBuilder;
-
-require 'vendor/autoload.php';
-
-$hosts = [
-  [
-    'host' => 'elasticsearch'  
-  ]
-];
-
-$client = ClientBuilder::create()->setHosts($hosts)->build();
+require 'loader.php';
 
 $data = json_decode(file_get_contents("php://input"), true);
 $username = $data['username'];

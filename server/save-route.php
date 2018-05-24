@@ -1,15 +1,10 @@
 <?php 
-use Elasticsearch\ClientBuilder;
+require 'loader.php';
 
-require 'vendor/autoload.php';
+$dotenv = new Dotenv\Dotenv(__DIR__);
+$dotenv->load();
 
-$hosts = [
-    [
-        'host' => 'elasticsearch'
-    ]
-];
-
-$client = ClientBuilder::create()->setHosts($hosts)->build();
+$google_api_key = getenv('GOOGLE_API_KEY');
 
 function generateRandomString($length = 10) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -27,7 +22,7 @@ $end_location = $data['end_location'];
 
 $steps_data = [];
 
-$contents = file_get_contents("https://maps.googleapis.com/maps/api/directions/json?origin={$start_location['latitude']},{$start_location['longitude']}&destination={$end_location['latitude']},{$end_location['longitude']}&key=AIzaSyBcRNyNnBHhxCxkLXfgsVkem3Wcwd_2ez4");
+$contents = file_get_contents("https://maps.googleapis.com/maps/api/directions/json?origin={$start_location['latitude']},{$start_location['longitude']}&destination={$end_location['latitude']},{$end_location['longitude']}&key={$google_api_key}");
 
 $directions_data = json_decode($contents, true);
 
@@ -91,3 +86,4 @@ if(!empty($steps_data)){
 	}
 
 }
+

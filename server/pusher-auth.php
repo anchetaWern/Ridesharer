@@ -1,15 +1,19 @@
 <?php 
 require 'vendor/autoload.php';
 
-$app_id = 'YOUR PUSHER APP ID';
-$app_key = 'YOUR PUSHER APP KEY';
-$app_secret = 'YOUR PUSHER APP SECRET';
-$app_cluster = 'YOUR PUSHER APP CLUSTER';
+$dotenv = new Dotenv\Dotenv(__DIR__);
+$dotenv->load();
+
+$app_id = getenv('PUSHER_APP_ID');
+$app_key = getenv('PUSHER_APP_KEY');
+$app_secret = getenv('PUSHER_APP_SECRET');
+$app_cluster = getenv('PUSHER_APP_CLUSTER');
 
 
 header('Content-Type: application/json');
 
-$pusher = new Pusher\Pusher($app_key, $app_secret, $app_id, ['cluster' => $app_cluster, 'encrypted' => true]);
+$options = ['cluster' => $app_cluster, 'encrypted' => true];
+$pusher = new Pusher\Pusher($app_key, $app_secret, $app_id, $options);
 
 $channel = $_POST['channel_name'];
 $socket_id = $_POST['socket_id'];

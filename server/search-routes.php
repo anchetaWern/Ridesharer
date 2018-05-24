@@ -1,15 +1,11 @@
 <?php 
-use Elasticsearch\ClientBuilder;
+require 'loader.php';
 
-require 'vendor/autoload.php';
+$dotenv = new Dotenv\Dotenv(__DIR__);
+$dotenv->load();
 
-$hosts = [
-  [
-    'host' => 'elasticsearch'  
-  ]
-];
+$google_api_key = getenv('GOOGLE_API_KEY');
 
-$client = ClientBuilder::create()->setHosts($hosts)->build();
 $params['index'] = 'places';
 $params['type'] = 'location';
 
@@ -22,7 +18,7 @@ $hiker_dest_lat = $data['dest']['latitude'];
 $hiker_dest_lon = $data['dest']['longitude'];
 
 
-$hiker_directions_contents = file_get_contents("https://maps.googleapis.com/maps/api/directions/json?origin={$hiker_origin_lat},{$hiker_origin_lon}&destination={$hiker_dest_lat},{$hiker_dest_lon}&key=AIzaSyBcRNyNnBHhxCxkLXfgsVkem3Wcwd_2ez4");
+$hiker_directions_contents = file_get_contents("https://maps.googleapis.com/maps/api/directions/json?origin={$hiker_origin_lat},{$hiker_origin_lon}&destination={$hiker_dest_lat},{$hiker_dest_lon}&key={$google_api_key}");
 
 $hiker_directions_data = json_decode($hiker_directions_contents, true);
 $hikers_steps = [];

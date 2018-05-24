@@ -109,7 +109,7 @@ export default class Map extends Component<Props> {
 
               this.users_channel.trigger('client-rider-accepted', rider_data);
 
-              axios.post(`${base_url}/exclude-rider.php`, {
+              axios.post(`${base_url}/delete-route.php`, {
                 username: username
               })
               .then((response) => {
@@ -337,7 +337,7 @@ export default class Map extends Component<Props> {
               
                 if(action == 'share'){
 
-                  axios.post(`${base_url}/save-location.php`, {
+                  axios.post(`${base_url}/save-route.php`, {
                     username: username,
                     from: this.state.from, 
                     to: this.state.to, 
@@ -366,7 +366,7 @@ export default class Map extends Component<Props> {
 
                       if(this.journey_id && this.hiker){ 
 
-                        axios.post(`${base_url}/update-location.php`, {
+                        axios.post(`${base_url}/update-route.php`, {
                           id: this.journey_id,
                           lat: latitude,
                           lon: longitude
@@ -442,7 +442,7 @@ export default class Map extends Component<Props> {
                   const ten_minutes = 1000 * 60 * 10; 
                   var interval = setInterval(() => {
                     
-                    axios.post(`${base_url}/search-riders.php`, {
+                    axios.post(`${base_url}/search-routes.php`, {
                       origin: this.state.start_location,
                       dest: this.state.end_location
                     })
