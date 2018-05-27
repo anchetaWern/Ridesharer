@@ -17,8 +17,6 @@ import Tapper from '../components/Tapper';
 
 const base_url = 'YOUR NGROK URL';
 
-type Props = {};
-
 async function requestGeolocationPermission() {
   try{
     const granted = await PermissionsAndroid.request(
@@ -41,7 +39,7 @@ async function requestGeolocationPermission() {
 
 requestGeolocationPermission();
 
-export default class Home extends Component<Props> {
+export default class Home extends Component {
   
   static navigationOptions = {
     header: null,
