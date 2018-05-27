@@ -2,6 +2,7 @@
     "require": {
         "alexpechkarev/geometry-library": "1.0",
         "elasticsearch/elasticsearch": "^6.0",
-        "pusher/pusher-php-server": "^3.0"
+        "pusher/pusher-php-server": "^3.0",
+        "vlucas/phpdotenv": "^2.4"
     }
 }
