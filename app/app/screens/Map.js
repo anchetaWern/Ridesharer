@@ -20,8 +20,8 @@ const pusher_app_key = 'YOUR PUSHER APP KEY';
 const pusher_app_cluster = 'YOUR PUSHER CLUSTER';
 
 
-const ten_minutes = 1000 * 60 * 10; 
-const five_minutes = 1000 * 60 * 5;
+const search_timeout = 1000 * 60 * 10; 
+const share_timeout = 1000 * 60 * 5;
 
 Geocoder.init(google_api_key);
 
@@ -323,7 +323,7 @@ export default class Map extends Component<Props> {
   }
 
 
-  tweakDestination = () => {
+  tweakDestination = (evt) => {
     Geocoder.from({
       latitude: evt.nativeEvent.coordinate.latitude,
       longitude: evt.nativeEvent.coordinate.longitude
@@ -450,12 +450,21 @@ export default class Map extends Component<Props> {
 
         }
 
+      },
+      (error) => {
+        console.log('error occured while watching position: ', error);
+      },
+      { 
+        enableHighAccuracy: true, 
+        timeout: 20000, 
+        maximumAge: 2000, 
+        distanceFilter: 10 
       }
     );
 
     setTimeout(() => {
       this.resetUI();
-    }, five_minutes);
+    }, share_timeout);
 
   }
 
@@ -538,7 +547,7 @@ export default class Map extends Component<Props> {
     setTimeout(() => {
       clearInterval(interval);
       this.resetUI();
-    }, ten_minutes);
+    }, search_timeout);
 
 
   }
