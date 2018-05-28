@@ -108,9 +108,6 @@ try {
         'lng' => $to_coords['lon']
       ];
 
-      $hiker_origin_to_hiker_dest = \GeometryLibrary\SphericalUtil::computeDistanceBetween($hikers_origin, $hikers_dest);
-      $hiker_origin_to_rider_dest = \GeometryLibrary\SphericalUtil::computeDistanceBetween($hikers_origin, $riders_dest);
-
       if(isCoordsOnPath($hiker_origin_lat, $hiker_origin_lon, $riders_steps) && canDropoff($hikers_origin, $hikers_dest, $riders_origin, $riders_dest, $hikers_steps, $riders_steps)){
 
         $rider_details = [
