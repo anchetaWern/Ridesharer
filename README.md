@@ -1,5 +1,5 @@
 # Ridesharer
-A carpooling app built with React Native, Pusher, 
+A carpooling app built with React Native, Pusher Channels, PHP, and Elasticsearch.
 
 ### Prerequisites
 
