@@ -5,7 +5,7 @@ Full tutorial is available on the Pusher tutorial hub:
 - [Create a carpooling app with React Native - Part 1: Setting up the server](https://pusher.com/tutorials/carpooling-react-native-part-1)
 - [Create a carpooling app with React Native - Part 2: Creating the frontend](https://pusher.com/tutorials/carpooling-react-native-part-2)
 
-### Prerequisites
+## Prerequisites
 
 * Docker
 * React Native development environment for Android or iOS (depending on where you want to deploy).
